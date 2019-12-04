@@ -16,7 +16,6 @@ public class Robot extends TimedRobot {
     intake = new Intake();
     costco = new Cart();
     shooter = new Shooter();
-
   }
 
   @Override
