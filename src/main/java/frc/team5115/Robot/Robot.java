@@ -1,5 +1,6 @@
 package frc.team5115.Robot;
 
+import edu.wpi.first.wpilibj.PowerDistributionPanel;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.command.Scheduler;
 import frc.team5115.Subsystems.Intake;
@@ -10,6 +11,7 @@ public class Robot extends TimedRobot {
   public static Intake intake;
   public static Cart costco;
   public static Shooter shooter;
+  public PowerDistributionPanel PDP;
 
   @Override
   public void robotInit() {
@@ -17,6 +19,7 @@ public class Robot extends TimedRobot {
     costco = new Cart();
     shooter = new Shooter();
 
+    PDP = new PowerDistributionPanel(0);
   }
 
   @Override
@@ -37,5 +40,6 @@ public class Robot extends TimedRobot {
 
   @Override
   public void testPeriodic() {
+    PDP.getTotalCurrent();
   }
 }

@@ -4,6 +4,8 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import edu.wpi.first.wpilibj.command.Subsystem;
 
+import static frc.team5115.Constants.FRONT_INTAKE_ID;
+
 public class Intake extends Subsystem{
     TalonSRX frontIntake;
     double intakeSpeed;
@@ -14,7 +16,7 @@ public class Intake extends Subsystem{
 
     public Intake(){
         super();
-        frontIntake = new TalonSRX(0);
+        frontIntake = new TalonSRX(FRONT_INTAKE_ID);
     }
 
     public void Inhale(){
