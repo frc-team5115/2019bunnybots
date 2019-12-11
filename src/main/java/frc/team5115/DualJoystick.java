@@ -12,8 +12,8 @@ public class DualJoystick {
     private int operatorPort = -1;
 
     //thats why i gotta define the joysticks that i defineedddddd
-    private Joystick driverJoystick;
-    private Joystick operatorJoystick;
+    public Joystick driverJoystick;
+    public Joystick operatorJoystick;
 
     public DualJoystick(){
         //go through all them joysticks

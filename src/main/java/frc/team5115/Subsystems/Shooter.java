@@ -10,6 +10,7 @@ import frc.team5115.Constants;
 
 import static frc.team5115.Constants.ELEVATOR_ID;
 import static frc.team5115.Constants.FLYWHEEL_ID;
+import static frc.team5115.OI.joy;
 
 public class Shooter extends Subsystem{
     VictorSPX Elevator;
@@ -23,7 +24,7 @@ public class Shooter extends Subsystem{
         Elevator = new VictorSPX(ELEVATOR_ID);
         Flywheel = new TalonSRX(FLYWHEEL_ID);
 
-        Flywheel.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
+        Flywheel.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative);
 
         Flywheel.setSensorPhase(true);
 
@@ -33,10 +34,10 @@ public class Shooter extends Subsystem{
         Flywheel.configPeakOutputForward(1, Constants.kTimeoutMs);
         Flywheel.configPeakOutputReverse(-1, Constants.kTimeoutMs);
         /* Config the Velocity closed loop gains in slot0 */
-        Flywheel.config_kF(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kF, Constants.kTimeoutMs);
-        Flywheel.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kP, Constants.kTimeoutMs);
-        Flywheel.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kI, Constants.kTimeoutMs);
-        Flywheel.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kD, Constants.kTimeoutMs);
+
+        Flywheel.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kP);
+        Flywheel.config_kI(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kI);
+        Flywheel.config_kD(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kD);
 
 //        Elevator.configSelectedFeedbackSensor(FeedbackDevice.CTRE_MagEncoder_Relative, Constants.kPIDLoopIdx, Constants.kTimeoutMs);
 //
@@ -55,9 +56,10 @@ public class Shooter extends Subsystem{
         double motorOutput = Elevator.getMotorOutputPercent();
     }
     public void eject(){
-        double targetVelocity = 1000; //496 ticks per revelution
+        double targetVelocity = 1500; //496 ticks per revelution
         Elevator.set(ControlMode.Velocity, -targetVelocity);
         Flywheel.set(ControlMode.Velocity, targetVelocity);
+        System.out.println(Flywheel.getSelectedSensorVelocity());
 
     }
 
@@ -65,5 +67,8 @@ public class Shooter extends Subsystem{
             Elevator.set(ControlMode.PercentOutput, 0);
             Flywheel.set(ControlMode.PercentOutput, 0);
         }
+    public void driveOveride(){
+        joy.driverToOperatorOverride();
+    }
 }
 
