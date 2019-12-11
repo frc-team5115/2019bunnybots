@@ -16,13 +16,13 @@ public class Drive extends Command {
 
     protected void initialize() {
         System.out.println("Starting the drivetrain");
-    }
-
-    protected void execute() {
         Robot.mechDrive.mechDrive(joystick.getRawAxis(0),joystick.getRawAxis(1),joystick.getRawAxis(2),joystick.getRawAxis(3));
     }
 
+    protected void execute() {
+    }
+
     protected boolean isFinished() {
-        return false;
+        return true;
     }
 }

@@ -29,10 +29,10 @@ public class Shooter extends Subsystem{
         Flywheel.setSensorPhase(true);
 
         /* Config the peak and nominal outputs */
-        Flywheel.configNominalOutputForward(0, Constants.kTimeoutMs);
-        Flywheel.configNominalOutputReverse(0, Constants.kTimeoutMs);
-        Flywheel.configPeakOutputForward(1, Constants.kTimeoutMs);
-        Flywheel.configPeakOutputReverse(-1, Constants.kTimeoutMs);
+//        Flywheel.configNominalOutputForward(0, Constants.kTimeoutMs);
+//        Flywheel.configNominalOutputReverse(0, Constants.kTimeoutMs);
+//        Flywheel.configPeakOutputForward(1, Constants.kTimeoutMs);
+//        Flywheel.configPeakOutputReverse(-1, Constants.kTimeoutMs);
         /* Config the Velocity closed loop gains in slot0 */
 
         Flywheel.config_kP(Constants.kPIDLoopIdx, Constants.kGains_Velocit.kP);
