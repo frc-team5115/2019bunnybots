@@ -3,12 +3,9 @@ package frc.team5115.Subsystems;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
 import com.kauailabs.navx.frc.AHRS;
 import edu.wpi.first.wpilibj.SPI;
-import edu.wpi.first.wpilibj.command.Subsystem;
-import frc.team5115.Commands.Drive;
 import frc.team5115.Constants;
-import frc.team5115.OI;
 
-public class MecanumDrive extends Subsystem{
+public class MecanumDrive{
 
     edu.wpi.first.wpilibj.drive.MecanumDrive driveMath;
 
@@ -19,11 +16,8 @@ public class MecanumDrive extends Subsystem{
 
     AHRS gyro;
 
-    public void initDefaultCommand() {
-        setDefaultCommand(new Drive());
-    }
-
     public MecanumDrive(){
+        System.out.println("driving");
         frontLeft = new WPI_TalonSRX(Constants.FRONT_LEFT_MOTOR_ID);
         frontRight = new WPI_TalonSRX(Constants.FRONT_RIGHT_MOTOR_ID);
         backLeft = new WPI_TalonSRX(Constants.BACK_LEFT_MOTOR_ID);

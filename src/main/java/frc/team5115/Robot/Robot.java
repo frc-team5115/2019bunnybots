@@ -1,19 +1,16 @@
 package frc.team5115.Robot;
 
-import edu.wpi.first.wpilibj.PowerDistributionPanel;
+import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.TimedRobot;
-import edu.wpi.first.wpilibj.command.Scheduler;
-import frc.team5115.OI;
 import frc.team5115.Subsystems.*;
 
 
 public class Robot extends TimedRobot {
   public static Intake intake;
   public static Shooter shooter;
-  public PowerDistributionPanel PDP;
   public static NavX navx;
   public static MecanumDrive driveTrain;
-  public static OI OI;
+  public static Joystick joy;
 
   @Override
   public void robotInit() {
@@ -21,9 +18,8 @@ public class Robot extends TimedRobot {
     shooter = new Shooter();
     navx = new NavX();
     driveTrain = new MecanumDrive();
-    OI = new OI();
+    joy = new Joystick(0);
 
-    PDP = new PowerDistributionPanel(0);
   }
 
   @Override
@@ -41,11 +37,13 @@ public class Robot extends TimedRobot {
 
   @Override
   public void teleopPeriodic() {
-      Scheduler.getInstance().run();
+      driveTrain.drive(joy.getRawAxis(0), joy.getRawAxis(1), joy.getRawAxis(4));
+      intake.Inhale();
+      shooter.eject();
   }
 
   @Override
   public void testPeriodic() {
-    PDP.getTotalCurrent();
+
   }
 }

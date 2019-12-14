@@ -2,17 +2,12 @@ package frc.team5115.Subsystems;
 
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
-import edu.wpi.first.wpilibj.command.Subsystem;
 
-import static frc.team5115.Constants.FRONT_INTAKE_ID;
+import static frc.team5115.Constants.*;
+import static frc.team5115.Robot.Robot.joy;
 
-public class Intake extends Subsystem{
+public class Intake {
     TalonSRX frontIntake;
-    double intakeSpeed;
-    double roboVelocity = 0.25;
-
-    public void initDefaultCommand() {
-    }
 
     public Intake(){
         super();
@@ -20,8 +15,6 @@ public class Intake extends Subsystem{
     }
 
     public void Inhale(){
-        //roboVelcoity = drivetrain.getvVelocity();
-        intakeSpeed = 0.3 + 0.3*roboVelocity;
-        frontIntake.set(ControlMode.PercentOutput, intakeSpeed);
+        frontIntake.set(ControlMode.PercentOutput, INTAKE_SPEED);
     }
 }
